@@ -1,10 +1,14 @@
+from app import AppLayer
+
+
 class Terminal:
     def __init__(self):
         self.__menu()
         self.__prog_loop()
+        self.__app = AppLayer()
 
     def __menu(self):
-        print("m - manual")
+        print("m - this.manual")
         print("f - Format disc")
         print("w - Write file")
         print("r - Remove file")
@@ -15,19 +19,19 @@ class Terminal:
 
     def __switch(self, user_input):
         if user_input == "m":
-            print("m")
+            self.__menu()
         elif user_input == "f":
-            print("f")
+            self.__app.format_disc()
         elif user_input == "w":
-            print("w")
+            self.__app.write_file()
         elif user_input == "r":
-            print("r")
+            self.__app.remove_file()
         elif user_input == "c":
-            print("c")
+            self.__app.copy_file()
         elif user_input == "s":
-            print("s")
+            self.__app.show_disc()
         elif user_input == "a":
-            print("a")
+            self.__app.average_capacity()
 
     def __prog_loop(self):
         user_input = "m"
@@ -42,3 +46,6 @@ class Terminal:
                 self.__switch(user_input)
 
         print("Thank you, bye...")
+
+    def __str__(self):
+        return "I am Terminal"
