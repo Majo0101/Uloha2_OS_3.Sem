@@ -2,13 +2,14 @@ from app import AppLayer
 
 
 class Terminal:
+    __app = AppLayer()
+
     def __init__(self):
         self.__menu()
         self.__prog_loop()
-        self.__app = AppLayer()
 
     def __menu(self):
-        print("m - this.manual")
+        print("m - self.manual")
         print("f - Format disc")
         print("w - Write file")
         print("r - Remove file")
