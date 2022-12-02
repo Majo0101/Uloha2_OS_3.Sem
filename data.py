@@ -31,7 +31,7 @@ class Node:
         return self.__address_data
 
     def set_address_data(self, x):
-        self.__address_data.append(x)
+        self.__address_data.extend(x)
 
     def del_address_data(self):
         self.__address_data.clear()

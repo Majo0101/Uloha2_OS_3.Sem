@@ -17,6 +17,7 @@ class Terminal:
         print("| p - Print file")
         print("| s - Show disc")
         print("| a - Average capacity")
+        print("| b - Bin")
         print("> e - Exit")
 
     def __switch(self, user_input):
@@ -36,10 +37,12 @@ class Terminal:
             self.__app.show_disc()
         elif user_input == "a":
             self.__app.average_capacity()
+        elif user_input == "b":
+            self.__app.bin_options()
 
     def __prog_loop(self):
         user_input = "m"
-        def_input = {"m", "f", "w", "r", "c", "p", "s", "a", "e"}
+        def_input = {"m", "f", "w", "r", "c", "p", "s", "a", "b", "e"}
 
         while user_input != "e":
             user_input = input("<")
