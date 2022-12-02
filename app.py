@@ -27,11 +27,19 @@ class Services:
     def service_data_controller(self, data):
         __tmp_data = "----------------"
         __tmp_stack = []
-        __tmp_counter = 16
+        __tmp = data
         for index in self.__data:
             if not index.data_use:
-
-                pass
+                if len(__tmp) <= 16:
+                    index.data_data = __tmp + __tmp_data[len(__tmp):]
+                    index.data_use = True
+                    __tmp_stack.append(index.data_order)
+                    break
+                else:
+                    index.data_data = __tmp[0:16]
+                    index.data_use = True
+                    __tmp = __tmp[16:]
+                    __tmp_stack.append(index.data_order)
         return __tmp_stack
 
     def service_write_file(self, name, data):
@@ -80,11 +88,11 @@ class Services:
         tmp = ""
         for index in self.__nodes:
             if index.node_name[0:len(x)] == x and not index.node_bin:
-                print("> " + index.node_name[0:len(x)])
+                print("> " + index.node_name.translate(str.maketrans('', '', '-')))
                 for obj in self.__data:
                     if obj.data_order in index.node_register:
                         tmp += obj.data_data
-                print("> " + tmp)
+                print("> " + tmp.translate(str.maketrans('', '', '-')))
                 return 0
         return -1
 
@@ -109,7 +117,7 @@ class Services:
     def service_show_bin(self):
         for index in self.__nodes:
             if index.node_bin:
-                print(">->" + index.node_name)
+                print(">->" + index.node_name.translate(str.maketrans('', '', '-')))
         print(">->")
 
     def service_add_to_bin(self, x):
@@ -130,6 +138,7 @@ class Services:
                         if block.data_order == num:
                             block.data_data = "----------------"
                             block.data_use = False
+                index.node_register.clear()
                 print(">-> File was successfully removed")
                 break
             else:
