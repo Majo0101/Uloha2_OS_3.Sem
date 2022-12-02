@@ -49,4 +49,4 @@ class Terminal:
         print("Thank you, bye...")
 
     def __str__(self):
-        return "I am Terminal"
+        return "I am the Terminal"

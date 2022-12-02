@@ -1,9 +1,16 @@
 class Node:
-    def __init__(self, in_order):
+    def __init__(self, x):
+        self.__used_node = False
         self.__file_name = "--------"
-        self.__in_order = in_order
+        self.__in_order = x
         self.__bin = False
         self.__address_data = []
+
+    def get_used_node(self):
+        return self.__used_node
+
+    def set_used_node(self, x):
+        self.__used_node = x
 
     def get_file_name(self):
         return self.__file_name
@@ -13,9 +20,6 @@ class Node:
 
     def get_in_order(self):
         return self.__in_order
-
-    def set_in_order(self, x):
-        self.__in_order = x
 
     def get_bin(self):
         return self.__bin
@@ -32,8 +36,9 @@ class Node:
     def del_address_data(self):
         self.__address_data.clear()
 
+    node_use = property(get_used_node, set_used_node)
     node_name = property(get_file_name, set_file_name)
-    node_order = property(get_in_order, set_in_order)
+    node_order = property(get_in_order)
     node_bin = property(get_bin, set_bin)
     node_register = property(get_address_data, set_address_data)
 
