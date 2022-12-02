@@ -9,14 +9,15 @@ class Terminal:
         self.__prog_loop()
 
     def __menu(self):
-        print("m - self.manual")
-        print("f - Format disc")
-        print("w - Write file")
-        print("r - Remove file")
-        print("c - Copy file")
-        print("s - Show disc")
-        print("a - Average capacity")
-        print("e - Exit\n")
+        print("> m - self.manual")
+        print("| f - Format disc")
+        print("| w - Write file")
+        print("| r - Remove file")
+        print("| c - Copy file")
+        print("| p - Print file")
+        print("| s - Show disc")
+        print("| a - Average capacity")
+        print("> e - Exit")
 
     def __switch(self, user_input):
         if user_input == "m":
@@ -29,6 +30,8 @@ class Terminal:
             self.__app.remove_file()
         elif user_input == "c":
             self.__app.copy_file()
+        elif user_input == "p":
+            self.__app.print_file()
         elif user_input == "s":
             self.__app.show_disc()
         elif user_input == "a":
@@ -36,17 +39,17 @@ class Terminal:
 
     def __prog_loop(self):
         user_input = "m"
-        def_input = {"m", "f", "w", "r", "c", "s", "a", "e"}
+        def_input = {"m", "f", "w", "r", "c", "p", "s", "a", "e"}
 
         while user_input != "e":
-            user_input = input("> ")
+            user_input = input("<")
             if len(user_input) > 1 or user_input not in def_input:
                 print("> Bad choice, you can try read the menu...\n")
                 continue
             else:
                 self.__switch(user_input)
 
-        print("Thank you, bye...")
+        print("> Thank you, bye...")
 
     def __str__(self):
         return "I am the Terminal"
