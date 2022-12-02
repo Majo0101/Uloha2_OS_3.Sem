@@ -93,7 +93,7 @@ class Services:
                     if obj.data_order in index.node_register:
                         tmp += obj.data_data
                 print("> " + tmp.translate(str.maketrans('', '', '-')))
-                return 0
+                return tmp
         return -1
 
     def service_average_capacity(self):
@@ -188,6 +188,19 @@ class AppLayer:
     def copy_file(self):
         print("> Copy file <")
         __file_name = input("> Enter a file name:\n<")
+        if self.__interface.service_search_file(__file_name) == -1:
+            print("> File not found")
+        else:
+            __newfile_name = input("> This data will be copied...\n> Enter new file name: \n<")
+            if self.__interface.service_search_file(__newfile_name) != -1 or self.__interface.service_check_nodes() == 0:
+                print("Error during copying...")
+            else:
+                tmp = self.__interface.service_search_file(__file_name)
+                if self.__interface.service_check_capacity(tmp) != -1:
+                    print(">>> Will be copied to " + __newfile_name)
+                    self.__interface.service_write_file(__newfile_name, tmp)
+                else:
+                    print("> Entered data are bigger than disk free capacity")
 
     def print_file(self):
         print("> Print file <")
